@@ -30,20 +30,20 @@ python examples/demo.py
 
 ### 📁 项目结构
 你可以使用 Easy Agent 来实现：
-	•	自动问答对话系统（多个角色协作）
-	•	多步推理与规划任务
-	•	多模型协作的任务执行（如查询、摘要、写作）
-	•	自定义流程的智能助手
+•	自动问答对话系统（多个角色协作）
+•	多步推理与规划任务
+•	多模型协作的任务执行（如查询、摘要、写作）
+•	自定义流程的智能助手
 
 ### 📚 依赖组件
-	•	LangGraph
-	•	LangChain
-	•	Python 3.11+
+•	LangGraph
+•	LangChain
+•	Python 3.11+
 
 ### 🧩 开发计划
-	•	支持 Web 界面流程设计器
-	•	状态持久化与中断恢复
-	•	Agent Market 模块，复用预设智能体
+•	支持 Web 界面流程设计器
+•	状态持久化与中断恢复
+•	Agent Market 模块，复用预设智能体
 
 ### 📄 License
 MIT License
