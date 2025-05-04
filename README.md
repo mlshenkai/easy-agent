@@ -16,14 +16,17 @@
 ```bash
 git clone https://github.com/mlshenkai/easy-agent.git
 cd easy-agent
+```
 
 ### 2. 安装依赖
-pip install -r requirements.txt
-或者
+```bash
 uv sync
+```
 
 ### 3. 运行示例
+```bash
 python examples/demo.py
+```
 
 📁 项目结构
 你可以使用 Easy Agent 来实现：
@@ -45,4 +48,4 @@ python examples/demo.py
 📄 License
 MIT License
 
-欢迎 Issue 和 PR，一起打造强大的多智能体开发工具！
+欢迎 Issue 和 PR，一起打造强大的多智能体开发工具.
