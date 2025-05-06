@@ -13,10 +13,37 @@ from dataclasses import asdict, dataclass, field, fields
 from typing import Annotated, Any, Literal, Optional, Type, TypeVar
 from langchain_core.runnables import RunnableConfig, ensure_config
 
+@dataclass(kw_only=True)
+class BaseConfiguration:
+    default_model: Annotated[str, {"__template_metadata__": {"kind": "llm"}}] = field(
+        default="anthropic/claude-3-5-sonnet-20240620",
+        metadata={
+            "description": "The language model used for generating responses. Should be in the form: provider/model-name."
+        },
+    )
+    @classmethod
+    def from_runnable_config(
+        cls: Type[T], config: Optional[RunnableConfig] = None
+    ) -> T:
+        """Create an IndexConfiguration instance from a RunnableConfig object.
+
+        Args:
+            cls (Type[T]): The class itself.
+            config (Optional[RunnableConfig]): The configuration object to use.
+
+        Returns:
+            T: An instance of IndexConfiguration with the specified configuration.
+        """
+        config = ensure_config(config)
+        configurable = config.get("configurable") or {}
+        _fields = {f.name for f in fields(cls) if f.init}
+        return cls(**{k: v for k, v in configurable.items() if k in _fields})
+
+T = TypeVar("T", bound=BaseConfiguration)
 
 
 @dataclass(kw_only=True)
-class BaseRagConfiguration:
+class BaseRagConfiguration(BaseConfiguration):
     """Configuration class for indexing and retrieval operations.
 
     This class defines the parameters needed for configuring the indexing and
@@ -73,26 +100,6 @@ class BaseRagConfiguration:
         },
     )
 
-    @classmethod
-    def from_runnable_config(
-        cls: Type[T], config: Optional[RunnableConfig] = None
-    ) -> T:
-        """Create an IndexConfiguration instance from a RunnableConfig object.
-
-        Args:
-            cls (Type[T]): The class itself.
-            config (Optional[RunnableConfig]): The configuration object to use.
-
-        Returns:
-            T: An instance of IndexConfiguration with the specified configuration.
-        """
-        config = ensure_config(config)
-        configurable = config.get("configurable") or {}
-        _fields = {f.name for f in fields(cls) if f.init}
-        return cls(**{k: v for k, v in configurable.items() if k in _fields})
-    
-
-T = TypeVar("T", bound=BaseRagConfiguration)
 
 
 @dataclass(kw_only=True)
