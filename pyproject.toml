@@ -1,9 +1,13 @@
 [project]
 name = "easy-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "Based on the multi-agent (Multi-Agent) framework built on LangGraph"
 readme = "README.md"
 requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [
+    { name = "Shen Kai", email = "watcher.shen@gmail.com" }
+]
 dependencies = [
     "aiohttp>=3.11.18",
     "asyncio>=3.4.3",
@@ -23,6 +27,14 @@ dependencies = [
     "openai>=1.76.0",
     "pandas>=2.2.3",
 ]
+
+[project.optional-dependencies]
+dev = ["mypy>=1.11.1", "ruff>=0.6.1"]
+
+[build-system]
+requires = ["setuptools>=73.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 
 
 [tool.uv]
